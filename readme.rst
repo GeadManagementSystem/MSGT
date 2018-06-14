@@ -15,9 +15,9 @@ Team Members
 Advisor
 *******************
 - Mr. Fistum Alemu
-*******************
+*****************************************************************************************************************************************************
 About the Project
-*******************
+*****************************************************************************************************************************************************
 The main objective of the project is to develop a user-friendly computerized system which will enable
 the company[Gead General Trading] to run its business with minimal workload.
 
@@ -54,9 +54,9 @@ The main aim of business owner is to make a profit and most businesses use their
 plans to make future decisions. But the current system does not enable the company to know if their past
 decisions are good or not, in an acceptable amount of time. So, they will resort to pure instincts in making this
 important decision, rather than logically assessing them.
-*******************
+*****************************************************************************************************************************************************
 Proposed System
-*******************
+*****************************************************************************************************************************************************
 In the new system, when new goods come to the store the stock manager will add them to the system through
 the GUI (graphical user interface) and they will be transferred to a storage facility. When a customer buys an
 item from the store, the salesperson will use the system to add a transaction and notify the stock manager to
@@ -65,9 +65,9 @@ for the customer.
 The manager will use the new system to oversee all activities happening at the store. He/she will log in to the
 system and will be able to view and update staff information and also get comprehensive sales data report. At
 the end of each week the manager will be able to view or print the system generated report.
-*******************
+*****************************************************************************************************************************************************
 Implementation
-*******************
+*****************************************************************************************************************************************************
 The implementation of MSGT will take the MVC (Model-View-Controller) system architecture. MVC is a
 software approach that separates application logic from presentation.
 
