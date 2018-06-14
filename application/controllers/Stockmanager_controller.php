@@ -38,6 +38,7 @@ class Stockmanager_controller extends CI_Controller{
 
 
           $this->stock_model->add_item($item_name,$quantity,$unit_price);
+          $this->session->set_flashdata('success','Item added sucessfully!');
           redirect(base_url() . 'index.php/stockmanager_controller/');
 
 
@@ -56,11 +57,16 @@ class Stockmanager_controller extends CI_Controller{
       $new_price = $this->input->post('modal_update_price');
       $this->load->model('stock_model');
 
-      if($this->stock_model->update_price($item_id,$new_price) == TRUE){
-      redirect(base_url() . 'index.php/stockmanager_controller/');
+
+      if($this->stock_model->update_price($item_id,$new_price) === 'same'){
+          $this->session->set_flashdata('error','Price entered and old price are the Same...Nothing to update!');
+          redirect(base_url() . 'index.php/stockmanager_controller/');
+
       }
       else{
-        echo "same ammount... nothing to update";
+        $this->session->set_flashdata('success','Item updated sucessfully!');
+        redirect(base_url() . 'index.php/stockmanager_controller/');
+
       }
 
     }
@@ -73,6 +79,7 @@ class Stockmanager_controller extends CI_Controller{
     public function remove_item($item_id){
       $this->load->model('stock_model');
       $this->stock_model->remove_item($item_id);
+      $this->session->set_flashdata('success','Item deleted sucessfully!');
       redirect(base_url() . 'index.php/stockmanager_controller/');
 
     }

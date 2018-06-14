@@ -18,7 +18,7 @@
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
                       </button>
-                      <img class="col-md-offset-10" src="<?php echo base_url(); ?>/public/images/logo.png"  alt="logo" width="50" height="50">
+                      <img class="col-md-offset-5" src="<?php echo base_url(); ?>/public/images/logo.png"  alt="logo" width="50" height="50">
                   </div>
                   <!-- /.navbar-header -->
 
@@ -75,6 +75,27 @@
                       </div>
                       <!-- /.col-lg-12 -->
                   </div>
+
+                  <div class="table table-responsive">
+                    <table class="table table-bordered ">
+                      <thead>
+                        <tr class = "success">
+                          <th>Event ID</th>
+                          <th>Event Time</th>
+                          <th>User in Charge</th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                    <?php
+                          for($x = 0; $x < count($table_values); $x++){
+                            echo $table_values[$x];
+                          }
+                    ?>
+                      </tbody>
+                    </table>
+                  </div>
+
                 </div>
 
 

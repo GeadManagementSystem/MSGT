@@ -13,7 +13,12 @@ class Staff_model extends CI_Model{
     $add_sql = $this->db->insert_string('staff',$data);
     $query = $this->db->query($add_sql);
 
+
+
     if($query === TRUE){
+      $eventlog_description = '<b>Staff Member</b>: '.$first_name." ".$last_name." <b class='text-success'> [Added]<b>";
+      $this->load->model('eventlog_model');
+      $this->eventlog_model->add_eventlog('Manager',$eventlog_description);
       return TRUE;
     }
     else{
@@ -59,7 +64,21 @@ class Staff_model extends CI_Model{
   }
 
   public function delete_staff_member($staff_id){
+      $select_query = $this->db->query("SELECT * FROM staff WHERE staff_id = '$staff_id' ");
+      $row = $select_query -> row();
+      $first_name = $row->first_name;
+      $last_name = $row->last_name;
       $query = $this->db->query("DELETE FROM staff WHERE staff_id = '$staff_id' ");
+      if($query === TRUE){
+        $eventlog_description = '<b>Staff Member</b>: '.$first_name." ".$last_name." <b class='text-danger'> [Deleted]<b>";
+        $this->load->model('eventlog_model');
+        $this->eventlog_model->add_eventlog('Manager',$eventlog_description);
+        return TRUE;
+      }
+      else{
+        $last_query = $this->db->last_query();
+        return $last_query;
+      }
   }
 
 }

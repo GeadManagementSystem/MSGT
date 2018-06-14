@@ -15,6 +15,7 @@ class Login_controller extends CI_Controller{
         $this->form_validation->set_rules('password','Password','required');
         //check if everything goes well with the form validation
         if($this->form_validation->run()){
+          $this->load->model('eventlog_model');
             //the form is filled as per rules.....
             //get username and password, save them in variables
             $username = $this->input->post('username');
@@ -33,6 +34,10 @@ class Login_controller extends CI_Controller{
                 );
                 //set session variable
                 $this->session->set_userdata($session_data);
+
+                // register event
+                $eventlog_description = '<b>Username: </b>'.$username.", <b>Role: </b>Manager<b class='text-success'> [Logged in]<b>";
+                $this->eventlog_model->add_eventlog('Stockmanager',$eventlog_description);
                 //redirect to the desired page
                 redirect(base_url() . 'index.php/manager_controller/');
             }
@@ -45,6 +50,9 @@ class Login_controller extends CI_Controller{
                 );
                 //set session variable
                 $this->session->set_userdata($session_data);
+                // register event
+                $eventlog_description = '<b>Username: </b>'.$username.", <b>Role: </b>Salesperson<b class='text-success'> [Logged in]<b>";
+                $this->eventlog_model->add_eventlog('Stockmanager',$eventlog_description);
                 //redirect to the desired page
                 redirect(base_url() . 'index.php/salesperson_controller/');
             }
@@ -57,6 +65,9 @@ class Login_controller extends CI_Controller{
                 );
                 //set session variable
                 $this->session->set_userdata($session_data);
+                // register event
+                $eventlog_description = '<b>Username: </b>'.$username.", <b>Role: </b>Stockmanager<b class='text-success'> [Logged in]<b>";
+                $this->eventlog_model->add_eventlog('Stockmanager',$eventlog_description);
                 //redirect to the desired page
                 redirect(base_url() . 'index.php/stockmanager_controller/');
             }

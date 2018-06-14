@@ -18,7 +18,7 @@
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
                       </button>
-                      <img class="col-md-offset-10" src="<?php echo base_url(); ?>/public/images/logo.png"  alt="logo" width="50" height="50">
+                      <img class="col-md-offset-5" src="<?php echo base_url(); ?>/public/images/logo.png"  alt="logo" width="50" height="50">
                   </div>
                   <!-- /.navbar-header -->
 

@@ -14,6 +14,9 @@ class Stock_model extends CI_Model{
   $query = $this->db->query($add_sql);
 
   if($query === TRUE){
+    $eventlog_description = '<b>Item Name: </b>'.$item_name.', <b>Unit Price:</b> '.$unit_price.', <b>Quanity: </b>'.$quantity." <b class='text-success'> [Added]<b>";
+    $this->load->model('eventlog_model');
+    $this->eventlog_model->add_eventlog('Stockmanager',$eventlog_description);
     return TRUE;
   }
   else{
@@ -66,19 +69,39 @@ class Stock_model extends CI_Model{
 
   public function update_price($item_id,$new_price){
   $query = $this->db->query("SELECT * FROM stock WHERE item_id = '$item_id' ");
-  $row = $query->result();
-  if($row->unit_price === $new_price){
-    return FALSE;
+  $row = $query->row();
+  $item_name = $row->item_name;
+  $old_unit_price = $row->unit_price;
+  $quantity = $row->quantity;
+  if(number_format($old_unit_price,2) == number_format($new_price,2)){
+    return 'same';
   }
 
   else {
     $update_query = $this->db->query("UPDATE stock SET unit_price = '$new_price' WHERE item_id = '$item_id'");
-    return TRUE;
+    $eventlog_description = '<b>Item Name: </b>'.$item_name.', <b>Old Price:</b> '.$old_unit_price.', <b>New Price:</b> '.number_format($new_price,2)." <b class='text-success'> [Price Updated]<b>";
+    $this->load->model('eventlog_model');
+    $this->eventlog_model->add_eventlog('Stockmanager',$eventlog_description);
   }
 
   }
   public function remove_item($item_id){
+    $select_query = $this->db->query("SELECT * FROM stock WHERE item_id = '$item_id' ");
+    $row = $select_query -> row();
+    $item_name = $row->item_name;
+    $unit_price = $row->unit_price;
+    $quantity = $row->quantity;
     $query = $this->db->query("DELETE FROM stock WHERE item_id = '$item_id' ");
+    if($query === TRUE){
+      $eventlog_description = '<b>Item Name: </b>'.$item_name.', <b>Unit Price:</b> '.$unit_price.', <b>Quanity: </b>'.$quantity." <b class='text-danger'> [Deleted]<b>";
+      $this->load->model('eventlog_model');
+      $this->eventlog_model->add_eventlog('Stockmanager',$eventlog_description);
+      return TRUE;
+    }
+    else{
+      $last_query = $this->db->last_query();
+      return $last_query;
+    }
   }
 
 

@@ -18,7 +18,7 @@
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
                       </button>
-                      <img class="col-md-offset-10" src="<?php echo base_url(); ?>/public/images/logo.png"  alt="logo" width="50" height="50">
+                      <img class="col-md-offset-5" src="<?php echo base_url(); ?>/public/images/logo.png"  alt="logo" width="50" height="50">
                   </div>
                   <!-- /.navbar-header -->
 
@@ -58,11 +58,18 @@
                   <div class="row">
                       <div class="col-lg-12">
                           <h1 class="page-header"><?php echo $title ?></h1>
+                            <p id="base_url" class="hidden"><?php echo base_url(); ?>index.php/stockmanager_controller/update_price/</p>
                       </div>
                       <!-- /.col-lg-12 -->
                   </div>
+                  <div id="sucess_alert_box" class="alert alert-success alert-dismissable hidden">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <span id="success_flashdata" class = "text-success  "><?php echo $this->session->flashdata('success'); ?></span>
+      </div>
                   <div class="alert alert-warning">
-  <span class = "text-danger  "><?php echo $validation_errors; ?></span>
+  <span class = "text-danger  ">
+    <?php echo $this->session->flashdata('error'); ?><br>
+    <?php echo $validation_errors; ?></span>
       </div>
       <div class="col-sm-5 " >
           <div class="row">
@@ -75,7 +82,7 @@
                         <div class="row">
                             <div class="col-sm-12 form-group-sm">
                                 <label for="itemName">Item Name</label>
-                                <input type="text" value="<?php echo set_value('item_name'); ?>"id="itemName" name="item_name" placeholder="Item Name" maxlength="80"
+                                <input type="text" value="<?php echo set_value('item_name'); ?>" id="itemName" name="item_name" placeholder="Item Name" maxlength="80"
                                     class="form-control">
                             </div>
                         </div>
@@ -83,7 +90,7 @@
                         <div class="row">
                             <div class="col-sm-12 form-group-sm">
                                 <label for="itemQuantity">Quantity</label>
-                                <input type="number" value="<?php echo set_value('item_quantity'); ?>"id="itemQuantity" name="item_quantity" placeholder="Available Quantity"
+                                <input type="number" value="<?php echo set_value('item_quantity'); ?>" id="itemQuantity" name="item_quantity" placeholder="Available Quantity"
                                     class="form-control" min="0" >
                             </div>
                         </div>
@@ -91,7 +98,7 @@
                         <div class="row">
                             <div class="col-sm-12 form-group-sm">
                                 <label for="unitPrice">Unit Price</label>
-                                <input type="text" id="itemPrice" value="<?php echo set_value('item_price'); ?>"name="item_price" placeholder="Unit Price" class="form-control">
+                                <input type="text" id="itemPrice" value="<?php echo set_value('item_price'); ?>" name="item_price" placeholder="Unit Price" class="form-control">
                             </div>
                         </div>
                         <br>
@@ -146,7 +153,7 @@
         <div class="row">
             <div class="col-sm-12 form-group-sm">
                 <label for="update_price">Update Price</label>
-                <input type="number" required="required" value="<?php echo set_value('item_price'); ?>"name="modal_update_price" placeholder="Unit Price" class="form-control">
+                <input type="number" required="required" value="<?php echo set_value('item_price'); ?>" name="modal_update_price" placeholder="Unit Price" class="form-control">
             </div>
         </div>
       </div>
@@ -182,7 +189,7 @@
 
   </div>
 </div>
-        </div>
+</div></div>
           <!-- /#wrapper -->
 
             <script src="<?php echo base_url(); ?>public/vendor/jquery/jquery.min.js"></script>

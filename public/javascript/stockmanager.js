@@ -4,8 +4,11 @@ function display_modal(item_id){
 let modal_title = document.getElementById("modal_title");
 let item_name = document.getElementById("item_name_"+item_id).innerHTML;
 modal_title.innerHTML = "Item Name:" + item_name;
-$("#modal_form").attr("action","<?php echo base_url(); ?>index.php/stockmanager_controller/update_price/"+item_id)
+let base_url =  document.getElementById("base_url").innerHTML;
+$("#modal_form").attr("action",base_url+item_id)
 $("#myModal").modal('show');
+
+
 }
 
 
@@ -22,6 +25,13 @@ function confirm_delete(item_id){
 $(document).ready(function(){
   $("#add_item_form").hide();
   $("#collapse_form_button").show();
+  if($("#success_flashdata").html() ===""){
+    $("#sucess_alert_box").attr("class","alert alert-success alert-dismissable hidden");
+  }
+  else{
+    $("#sucess_alert_box").attr("class","alert alert-success alert-dismissable");
+  }
+
 });
 $("#collapse_form_button").click(function(){
   $("#add_item_form").show(1000);

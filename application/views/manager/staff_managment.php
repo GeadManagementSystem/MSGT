@@ -18,7 +18,7 @@
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
                       </button>
-                      <img class="col-md-offset-10" src="<?php echo base_url(); ?>/public/images/logo.png"  alt="logo" width="50" height="50">
+                      <img class="col-md-offset-5" src="<?php echo base_url(); ?>/public/images/logo.png"  alt="logo" width="50" height="50">
                   </div>
                   <!-- /.navbar-header -->
 
@@ -72,10 +72,14 @@
                   <div class="row">
                       <div class="col-lg-12">
                           <h1 class="page-header"><?php echo $title ?></h1>
+                          <p id="base_url" class="hidden"><?php echo base_url(); ?>index.php/manager_controller/delete_staff_member/</p>
                       </div>
                       <!-- /.col-lg-12 -->
                   </div>
-
+                  <div id="sucess_alert_box" class="alert alert-success alert-dismissable hidden">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                  <span id="success_flashdata" class = "text-success  "><?php echo $this->session->flashdata('success'); ?></span>
+                  </div>
                   <div class="alert alert-warning">
                   <span class = "text-danger  "><?php echo $validation_errors; ?></span>
                   </div>

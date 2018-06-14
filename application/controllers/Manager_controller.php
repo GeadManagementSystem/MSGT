@@ -61,6 +61,7 @@ class Manager_controller extends CI_Controller{
 
 
       $this->staff_model->add_staff_member($first_name,$last_name,$salary,$address);
+      $this->session->set_flashdata('success','Staff Member added sucessfully!');
       redirect(base_url() . 'index.php/manager_controller/staff_managment');
 
 
@@ -75,13 +76,16 @@ class Manager_controller extends CI_Controller{
   public function delete_staff_member($staff_id){
     $this->load->model('staff_model');
     $this->staff_model->delete_staff_member($staff_id);
-    redirect(base_url() . 'index.php/manager_controller/staff_managment');
+    $this->session->set_flashdata('success','Staff Member deleted sucessfully!');
+    redirect(base_url() . 'index.php/manager_controller/staff_managment/');
   }
 
   public function user_log(){
     if($this->session->userdata('username') === 'manager'){
       $data['title'] = 'User Log';
       $data['validation_errors'] = validation_errors();
+      $this->load->model('eventlog_model');
+      $data['table_values'] = $this->eventlog_model->get_eventlog_info('all');
       $this->load->view('manager/user_log', $data);
     }
     else{
