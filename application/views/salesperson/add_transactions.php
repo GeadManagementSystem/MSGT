@@ -45,22 +45,14 @@
                           <ul class="nav" id="side-menu">
                             <li><br><br><br></li>
                             <li>
-                                <a href="<?php echo base_url(); ?>index.php/manager_controller/"><i class="fa fa-dashboard fa-fw"></i>Main Panel</a>
+                                <a href="#"><i class="fa fa-plus-square fa-fw"></i>Add New Transaction</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url(); ?>index.php/manager_controller/generate_report/"><i class="fa fa-file-text fa-fw"></i>Report</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(); ?>index.php/manager_controller/staff_managment/"><i class="fa fa-group fa-fw"></i>Staff Managment</a>
-                            </li>
-                            <li>
-                                <a href="<?php echo base_url(); ?>index.php/manager_controller/user_log/"><i class="fa fa-list-alt fa-fw"></i>User Log</a>
+                                <a href="#"><i class="fa fa-history fa-fw"></i>Previous Transaction</a>
                             </li>
                               <li>
                                   <a href="<?php echo base_url(); ?>index.php/logout_controller/"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                               </li>
-
-
 
                        </ul>
 

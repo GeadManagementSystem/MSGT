@@ -43,6 +43,7 @@
                   <div class="navbar-default sidebar" role="navigation">
                       <div class="sidebar-nav navbar-collapse">
                           <ul class="nav" id="side-menu">
+                            <li><br><br><br></li>
                               <li>
                                   <a href="<?php echo base_url(); ?>index.php/logout_controller/"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                               </li>

@@ -15,7 +15,7 @@
       <div class=" login-panel panel panel-success">
 
         <div class="panel-heading">
-          <h3 class="panel-title text-center">Please Log In</h3>
+          <div class="text-center"><img src="<?php echo base_url(); ?>/public/images/logo.png"  alt="logo" width="100" height="100"></div>
       </div>
        <div class="panel-body">
       <form method="post" action="<?php echo base_url(); ?>index.php/login_controller/login">

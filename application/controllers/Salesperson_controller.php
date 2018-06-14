@@ -6,7 +6,7 @@ class Salesperson_controller extends CI_Controller{
     public function index(){
          if($this->session->userdata('username') === 'salesperson'){
            $data['title'] = 'Salesperson';
-           $this->load->view('salesperson/addtransactions', $data);
+           $this->load->view('salesperson/add_transactions', $data);
          }
          else{
            $this->session->set_flashdata('error','You must be logged in as Salesperson');
@@ -15,7 +15,7 @@ class Salesperson_controller extends CI_Controller{
 
     }
 
-    public function addTransaction(){
+    public function add_transaction(){
 
       //set rules for the forms
       $this->form_validation->set_rules('ammount_given','Ammount Given','required');
@@ -31,5 +31,17 @@ class Salesperson_controller extends CI_Controller{
         else{
              $this->index();
         }
+    }
+
+    public function print_receipt(){
+      //TODO implementation
+    }
+
+    public function notify_order(){
+      //TODO implementation
+    }
+
+    public function search(){
+      //TODO implementation
     }
 }
