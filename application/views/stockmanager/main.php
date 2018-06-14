@@ -6,11 +6,7 @@
         <link rel="stylesheet" href ="<?php echo base_url(); ?>public/vendor/bootstrap/css/custom.css" />
         <link rel="stylesheet" href ="<?php echo base_url(); ?>public/vendor/font-awesome/css/font-awesome.min.css" />
     </head>
-
     <body>
-
-
-
       <div id="wrapper">
 
               <!-- Navigation -->
@@ -22,23 +18,21 @@
                           <span class="icon-bar"></span>
                           <span class="icon-bar"></span>
                       </button>
-                      <img src="<?php echo base_url(); ?>/public/images/logo.png"  alt="logo" width="50" height="50">
+                      <img class="col-md-offset-10" src="<?php echo base_url(); ?>/public/images/logo.png"  alt="logo" width="50" height="50">
                   </div>
                   <!-- /.navbar-header -->
 
                   <ul class="nav navbar-top-links navbar-right">
-
-
                       <li class="dropdown">
                           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                               <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                           </a>
                           <ul class="dropdown-menu dropdown-user">
 
-                              <li><i>Username</i>
+                              <li><i class="fa fa-user fa-fw "></i><?php echo $this->session->userdata('username'); ?>
                               </li>
                               <li class="divider"></li>
-                              <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                              <li><a href="<?php echo base_url(); ?>index.php/logout_controller/"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                               </li>
                           </ul>
                           <!-- /.dropdown-user -->
@@ -46,15 +40,11 @@
                       <!-- /.dropdown -->
                   </ul>
                   <!-- /.navbar-top-links -->
-
-
-
-
                   <div class="navbar-default sidebar" role="navigation">
                       <div class="sidebar-nav navbar-collapse">
                           <ul class="nav" id="side-menu">
                               <li>
-                                  <a href="index.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                                  <a href="<?php echo base_url(); ?>index.php/logout_controller/"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                               </li>
 
                        </ul>
@@ -63,16 +53,6 @@
               </div>
                   <!-- /.navbar-static-side -->
               </nav>
-
-
-
-
-
-
-
-
-
-
               <div id="page-wrapper">
                   <div class="row">
                       <div class="col-lg-12">
@@ -80,16 +60,9 @@
                       </div>
                       <!-- /.col-lg-12 -->
                   </div>
-
-
-
-
-
                   <div class="alert alert-warning">
-  <span class = "text-danger"><?php echo $validation_errors; ?></span>
+  <span class = "text-danger  "><?php echo $validation_errors; ?></span>
       </div>
-
-
       <div class="col-sm-5 " >
           <div class="row">
 
@@ -97,13 +70,7 @@
         </div>
                 <div id="add_item_form" class="well">
                   <h3 class="text-center page-header">Add Item</h3>
-
-
                     <form method="post" action="<?php echo base_url(); ?>index.php/stockmanager_controller/add_item">
-
-
-
-
                         <div class="row">
                             <div class="col-sm-12 form-group-sm">
                                 <label for="itemName">Item Name</label>
@@ -140,9 +107,6 @@
                     </form><!-- end of form-->
                 </div>
             </div>
-
-
-
 <div class="table table-responsive">
   <table class="table table-bordered ">
     <thead>
@@ -165,19 +129,6 @@
     </tbody>
   </table>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
@@ -203,20 +154,8 @@
       </div>
     </form>
     </div>
-
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 <!-- Confirm Delete Modal -->
 <div id="confirm_delete_modal" class="modal fade" role="dialog">
   <div class="modal-dialog modal-sm">
@@ -242,74 +181,12 @@
 
   </div>
 </div>
-
-
-
-
-          </div>
+        </div>
           <!-- /#wrapper -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             <script src="<?php echo base_url(); ?>public/vendor/jquery/jquery.min.js"></script>
             <script src="<?php echo base_url(); ?>public/vendor/bootstrap/js/bootstrap.min.js"></script>
-
-
-            <script>
-
-            function display_modal(item_id){
-
-            let modal_title = document.getElementById("modal_title");
-            let item_name = document.getElementById("item_name_"+item_id).innerHTML;
-            modal_title.innerHTML = "Item Name:" + item_name;
-            $("#modal_form").attr("action","<?php echo base_url(); ?>index.php/stockmanager_controller/update_price/"+item_id)
-            $("#myModal").modal('show');
-            }
-
-
-            function confirm_delete(item_id){
-              let modal_title = document.getElementById("confirm_delete_modal_title");
-              let item_name = document.getElementById("item_name_"+item_id).innerHTML;
-              modal_title.innerHTML = "Item Name:" + item_name;
-                $("#confirm_delete_modal").modal('show');
-                $("#delete_button_modal").click(function(){
-                  window.location.replace("remove_item/"+item_id);
-                });
-            }
-
-            $(document).ready(function(){
-              $("#add_item_form").hide();
-              $("#collapse_form_button").show();
-            });
-            $("#collapse_form_button").click(function(){
-              $("#add_item_form").show(1000);
-              $("#collapse_form_button").hide(1000);
-            });
-
-            $("#cancel_add_item_button").click(function(){
-              $("#add_item_form").hide(1000);
-              $("#collapse_form_button").show(1000);
-            });
-
-             </script>
-
-
+            <script src="<?php echo base_url(); ?>public/javascript/stockmanager.js"></script>
   </body>
 
 </html>

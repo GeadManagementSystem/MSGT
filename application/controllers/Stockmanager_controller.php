@@ -6,16 +6,24 @@ class Stockmanager_controller extends CI_Controller{
 
 
     public function index(){
-      $this->load->library('form_validation');
+
       $this->load->model('stock_model');
+
+      if($this->session->userdata('username') === 'stockmgr'){
         $data['title'] = 'Stockmanager';
         $data['table_values'] = $this->stock_model->get_item_info('all');
         $data['validation_errors'] = validation_errors();
         $this->load->view('stockmanager/main', $data);
+      }
+      else{
+            $this->session->set_flashdata('error','You must be logged in as Stockmanager');
+            redirect(base_url() . 'index.php/login_controller');
+      }
+
     }
 
     public function add_item(){
-      $this->load->library('form_validation');
+
       $this->load->model('stock_model');
       //set rules for the forms
       $this->form_validation->set_rules('item_name','Item Name','required');
@@ -42,7 +50,7 @@ class Stockmanager_controller extends CI_Controller{
     }
 
     public function update_price($item_id){
-      $this->load->library('form_validation');
+
       $this->form_validation->set_rules('modal_update_price','Unit Price','required|numeric');
       if ($this->form_validation->run() == TRUE ){
       $new_price = $this->input->post('modal_update_price');
