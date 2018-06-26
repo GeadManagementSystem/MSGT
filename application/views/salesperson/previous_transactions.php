@@ -42,19 +42,19 @@
                   <!-- /.navbar-top-links -->
                   <div class="navbar-default sidebar" role="navigation">
                       <div class="sidebar-nav navbar-collapse">
-                          <ul class="nav" id="side-menu">
-                            <li><br><br><br></li>
+                        <ul class="nav" id="side-menu">
+                          <li><br><br><br></li>
+                          <li>
+                              <a href="<?php echo base_url(); ?>index.php/salesperson_controller/"><i class="fa fa-plus-square fa-fw"></i>Add New Transaction</a>
+                          </li>
+                          <li>
+                              <a href="<?php echo base_url(); ?>index.php/salesperson_controller/search"><i class="fa fa-history fa-fw"></i>Previous Transaction</a>
+                          </li>
                             <li>
-                                <a href="#"><i class="fa fa-plus-square fa-fw"></i>Add New Transaction</a>
+                                <a href="<?php echo base_url(); ?>index.php/logout_controller/"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
-                            <li>
-                                <a href="#"><i class="fa fa-history fa-fw"></i>Previous Transaction</a>
-                            </li>
-                              <li>
-                                  <a href="<?php echo base_url(); ?>index.php/logout_controller/"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                              </li>
 
-                       </ul>
+                     </ul>
 
                   </div>
               </div>
@@ -66,6 +66,32 @@
                           <h1 class="page-header"><?php echo $title ?></h1>
                       </div>
                       <!-- /.col-lg-12 -->
+                  </div>
+                  <div class="table table-responsive">
+                    <table class="table table-bordered ">
+                      <thead>
+                        <tr class = "success">
+                          <th>Transaction ID</th>
+                          <th>Recipt No</th>
+                          <th>Item Name</th>
+                          <th>Quantity</th>
+                          <th>Total Price</th>
+                          <th>Discount %</th>
+                          <th>VAT %</th>
+                          <th>Customer Name</th>
+                          <th>Customer Phone</th>
+                          <th>Customer TIN</th>
+                          <th>Date Added</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                    <?php
+                          for($x = 0; $x < count($table_values); $x++){
+                            echo $table_values[$x];
+                          }
+                    ?>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
 

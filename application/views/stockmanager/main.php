@@ -74,7 +74,7 @@
       <div class="col-sm-5 " >
           <div class="row">
 
-          <button class="btn btn-info btn-sm " id="collapse_form_button">Add Item +</button>
+          <button class="btn btn-info btn-sm " id="collapse_form_button"><i class="fa fa-plus"></i>Add Item</button>
         </div>
                 <div id="add_item_form" class="well">
                   <h3 class="text-center page-header">Add Item</h3>

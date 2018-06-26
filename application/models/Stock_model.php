@@ -14,7 +14,7 @@ class Stock_model extends CI_Model{
   $query = $this->db->query($add_sql);
 
   if($query === TRUE){
-    $eventlog_description = '<b>Item Name: </b>'.$item_name.', <b>Unit Price:</b> '.$unit_price.', <b>Quanity: </b>'.$quantity." <b class='text-success'> [Added]<b>";
+    $eventlog_description = '<b>Item Name: </b>'.$item_name.', <b>Unit Price:</b> '.number_format($unit_price,2).', <b>Quanity: </b>'.$quantity." <b class='text-success'> [Added]<b>";
     $this->load->model('eventlog_model');
     $this->eventlog_model->add_eventlog('Stockmanager',$eventlog_description);
     return TRUE;
@@ -46,7 +46,29 @@ class Stock_model extends CI_Model{
                 </tr>";
                 array_push($items_stack,$table_row);
       }
-      return $items_stack;
+    }
+    else if ($item_id === 'item_names') {
+      $query = $this->db->query("SELECT * FROM stock");
+      foreach ($query->result() as $row) {
+        $option_entry = "$row->item_name";
+        array_push($items_stack,$option_entry);
+      }
+    }
+
+      else if ($item_id === 'item_price') {
+        $query = $this->db->query("SELECT * FROM stock");
+        foreach ($query->result() as $row) {
+          $option_entry = "$row->unit_price";
+          array_push($items_stack,$option_entry);
+        }
+      }
+
+        else if ($item_id === 'item_quantity') {
+          $query = $this->db->query("SELECT * FROM stock");
+          foreach ($query->result() as $row) {
+            $option_entry = "$row->quantity";
+            array_push($items_stack,$option_entry);
+          }
     }
     else{
       $query = $this->db->query("SELECT * FROM stock WHERE item_id = '$item_id' ");
@@ -62,8 +84,10 @@ class Stock_model extends CI_Model{
                 </tr>";
                 array_push($items_stack,$table_row);
       }
-      return $items_stack;
+
     }
+
+          return $items_stack;
 
   }
 
@@ -79,7 +103,7 @@ class Stock_model extends CI_Model{
 
   else {
     $update_query = $this->db->query("UPDATE stock SET unit_price = '$new_price' WHERE item_id = '$item_id'");
-    $eventlog_description = '<b>Item Name: </b>'.$item_name.', <b>Old Price:</b> '.$old_unit_price.', <b>New Price:</b> '.number_format($new_price,2)." <b class='text-success'> [Price Updated]<b>";
+    $eventlog_description = '<b>Item Name: </b>'.$item_name.', <b>Old Price:</b> '.number_format($old_unit_price,2).', <b>New Price:</b> '.number_format($new_price,2)." <b class='text-success'> [Price Updated]<b>";
     $this->load->model('eventlog_model');
     $this->eventlog_model->add_eventlog('Stockmanager',$eventlog_description);
   }
@@ -93,7 +117,7 @@ class Stock_model extends CI_Model{
     $quantity = $row->quantity;
     $query = $this->db->query("DELETE FROM stock WHERE item_id = '$item_id' ");
     if($query === TRUE){
-      $eventlog_description = '<b>Item Name: </b>'.$item_name.', <b>Unit Price:</b> '.$unit_price.', <b>Quanity: </b>'.$quantity." <b class='text-danger'> [Deleted]<b>";
+      $eventlog_description = '<b>Item Name: </b>'.$item_name.', <b>Unit Price:</b> '.number_format($unit_price,2).', <b>Quanity: </b>'.$quantity." <b class='text-danger'> [Deleted]<b>";
       $this->load->model('eventlog_model');
       $this->eventlog_model->add_eventlog('Stockmanager',$eventlog_description);
       return TRUE;
@@ -103,6 +127,23 @@ class Stock_model extends CI_Model{
       return $last_query;
     }
   }
+  public function decrement($item_name, $quantity_now){
+    $select_query = $this->db->query("SELECT * FROM stock WHERE item_name = '$item_name' ");
+    $row = $select_query -> row();
+    $quantity_old = $row->quantity;
+    $quantity = $quantity_old - $quantity_now;
+    $data = array('quantity'=>$quantity);
+    $where = "item_name = '$item_name'";
+    $str = $this->db->update_string('stock', $data, $where);;
+    $query = $this->db->query($str);
 
+    if($query === TRUE){
+      return TRUE;
+    }
+    else{
+      $last_query = $this->db->last_query();
+      return $last_query;
+    }
 
+}
 }
