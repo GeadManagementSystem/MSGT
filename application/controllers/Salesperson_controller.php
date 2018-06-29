@@ -24,7 +24,7 @@ class Salesperson_controller extends CI_Controller{
       //load model
       $this->load->model('transactions_model');
       //set rules for the forms
-      $this->form_validation->set_rules('amount_given','Ammount Given','required');
+      $this->form_validation->set_rules('amount_given','Ammount Given','required|numeric');
       $this->form_validation->set_rules('customer_name','Customer Name','required');
       $this->form_validation->set_rules('customer_phone','Customer Phone','required');
       $this->form_validation->set_rules('customer_tin','Customer TIN','required');
@@ -44,10 +44,12 @@ class Salesperson_controller extends CI_Controller{
             $total_price = $this->input->post("total_price_$a");
             $unit_price = $total_price / $quantity;
             $this->transactions_model->add_transaction($recipt_no,$item_name,$quantity,$unit_price,$total_price,$discount_percentage,$vat_percentage,$cust_name,$cust_phone,$cust_tin);
+
             $a -= 1;
           }
           $this->session->set_flashdata('success','Transactions added sucessfully!');
-          redirect(base_url() . 'index.php/salesperson_controller/');
+          //redirect(base_url() . 'index.php/salesperson_controller/');
+          $this->print_receipt($recipt_no);
         }
 
 
@@ -56,12 +58,26 @@ class Salesperson_controller extends CI_Controller{
         }
     }
 
-    public function print_receipt(){
-      //TODO implementation
+    public function print_receipt($recipt_no){
+      if($this->session->userdata('username') === 'salesperson'){
+        $this->load->model('transactions_model');
+        $data['title'] = 'Add new Transaction';
+        $data['recipt_no'] = $recipt_no;
+        $data['table_values'] = $this->transactions_model->gen_recipt($recipt_no);
+        $this->load->view('salesperson/recipt', $data);
+      }
+      else{
+        $this->session->set_flashdata('error','You must be logged in as Salesperson');
+        redirect(base_url() . 'index.php/login_controller');
+      }
     }
 
     public function notify_order(){
-      //TODO implementation
+      $this->load->model('transactions_model');
+      $this->load->helper('file');
+      $item_name = $this->input->post("item_name_1");
+      $quantity = $this->input->post("item_quantity_1");
+      $data = "items are requeted: "."item_name". $item_name."quantity: ".$quantity;
     }
 
     public function search(){

@@ -70,6 +70,12 @@ class Stock_model extends CI_Model{
             array_push($items_stack,$option_entry);
           }
     }
+    else if ($item_id === 'total_in_stock') {
+      $query = $this->db->query("SELECT SUM(quantity) as total_in_stock FROM stock");
+      foreach ($query->result() as $row) {
+        return $row->total_in_stock;
+      }
+}
     else{
       $query = $this->db->query("SELECT * FROM stock WHERE item_id = '$item_id' ");
       foreach ($query->result() as $row) {

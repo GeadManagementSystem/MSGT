@@ -5,6 +5,11 @@
         <link rel="stylesheet" href ="<?php echo base_url(); ?>public/vendor/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" href ="<?php echo base_url(); ?>public/vendor/bootstrap/css/custom.css" />
         <link rel="stylesheet" href ="<?php echo base_url(); ?>public/vendor/font-awesome/css/font-awesome.min.css" />
+        <!-- DataTables CSS -->
+        <link href="<?php echo base_url(); ?>public/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+        <!-- DataTables Responsive CSS -->
+        <link href="<?php echo base_url(); ?>public/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
     </head>
     <body>
       <div id="wrapper">
@@ -67,8 +72,8 @@
                       </div>
                       <!-- /.col-lg-12 -->
                   </div>
-                  <div class="table table-responsive">
-                    <table class="table table-bordered ">
+                  <div class="table table-responsive col-lg-12">
+                    <table class="table table-bordered " id="dataTables-example">
                       <thead>
                         <tr class = "success">
                           <th>Transaction ID</th>
@@ -92,6 +97,10 @@
                     ?>
                       </tbody>
                     </table>
+
+
+
+
                   </div>
                 </div>
 
@@ -102,6 +111,15 @@
 
             <script src="<?php echo base_url(); ?>public/vendor/jquery/jquery.min.js"></script>
             <script src="<?php echo base_url(); ?>public/vendor/bootstrap/js/bootstrap.min.js"></script>
+            <!-- DataTables JavaScript -->
+            <script src="<?php echo base_url(); ?>public/vendor/datatables/js/jquery.dataTables.min.js"></script>
+            <script src="<?php echo base_url(); ?>public/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+            <script src="<?php echo base_url(); ?>public/vendor/datatables-responsive/dataTables.responsive.js"></script>
+            <script>$(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });</script>
   </body>
 
 </html>

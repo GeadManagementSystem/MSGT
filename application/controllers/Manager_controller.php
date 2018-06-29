@@ -7,7 +7,13 @@ class Manager_controller extends CI_Controller{
 
 
       if($this->session->userdata('username') === 'manager'){
+        $this->load->model('transactions_model');
+        $this->load->model('stock_model');
         $data['title'] = 'Manager';
+        $data['total_earned_today'] = $this->transactions_model->get_total_earned_today();
+        $data['total_sold'] = $this->transactions_model->get_total_sold();
+        $data['highest_demand'] = $this->transactions_model->get_highest_demand();
+        $data['total_in_stock'] = $this->stock_model->get_item_info('total_in_stock');
         $data['validation_errors'] = validation_errors();
         $this->load->view('manager/main', $data);
       }
@@ -17,11 +23,11 @@ class Manager_controller extends CI_Controller{
       }
 
   }
-
   public function generate_report(){
     if($this->session->userdata('username') === 'manager'){
       $data['title'] = 'Generate Report';
       $data['validation_errors'] = validation_errors();
+
       $this->load->view('manager/report', $data);
     }
     else{
@@ -29,6 +35,18 @@ class Manager_controller extends CI_Controller{
       redirect(base_url() . 'index.php/login_controller');
     }
   }
+  public function report_result($from_date, $to_date){
+    $this->load->model('transactions_model');
+    $data['title'] = 'Generated Report';
+    $data['from_date'] = $from_date;
+    $data['to_date'] = $to_date;
+    $data['table_values'] = $this->transactions_model->get_tran_from_dates($from_date,$to_date);
+    $data['total_price'] = $this->transactions_model->get_tran_from_dates_total_price($from_date,$to_date);
+    $data['total_quantity'] = $this->transactions_model->get_tran_from_dates_total_quantity($from_date,$to_date);
+    $this->load->view('manager/report_result', $data);
+
+}
+
 
   public function staff_managment(){
     if($this->session->userdata('username') === 'manager'){
@@ -50,7 +68,7 @@ class Manager_controller extends CI_Controller{
   $this->form_validation->set_rules('first_name','First Name','required');
   $this->form_validation->set_rules('last_name','Last Name','required');
   $this->form_validation->set_rules('address','Address','required');
-  $this->form_validation->set_rules('salary','Salary','required|numeric');
+  $this->form_validation->set_rules('salary','Salary','required');
 
   if ($this->form_validation->run() == TRUE ){
 

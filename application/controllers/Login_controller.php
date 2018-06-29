@@ -40,6 +40,7 @@ class Login_controller extends CI_Controller{
                 $this->eventlog_model->add_eventlog('Stockmanager',$eventlog_description);
                 //redirect to the desired page
                 redirect(base_url() . 'index.php/manager_controller/');
+                return true;
             }
              else if($this->users_model->login_as( $username,$password) === 'salesperson'){
                 //create session...????????
@@ -55,6 +56,7 @@ class Login_controller extends CI_Controller{
                 $this->eventlog_model->add_eventlog('Stockmanager',$eventlog_description);
                 //redirect to the desired page
                 redirect(base_url() . 'index.php/salesperson_controller/');
+                return true;
             }
              if($this->users_model->login_as( $username,$password) === 'stockmanager'){
                 //create session...????????
@@ -70,6 +72,7 @@ class Login_controller extends CI_Controller{
                 $this->eventlog_model->add_eventlog('Stockmanager',$eventlog_description);
                 //redirect to the desired page
                 redirect(base_url() . 'index.php/stockmanager_controller/');
+                return true;
             }
             else{
                 // if there does not exist a user in the table with the entered credentials
@@ -80,6 +83,7 @@ class Login_controller extends CI_Controller{
         else{
             //false
             $this->index();
+            return false;
         }
     }
     }

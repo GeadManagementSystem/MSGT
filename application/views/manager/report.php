@@ -5,6 +5,7 @@
         <link rel="stylesheet" href ="<?php echo base_url(); ?>public/vendor/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" href ="<?php echo base_url(); ?>public/vendor/bootstrap/css/custom.css" />
         <link rel="stylesheet" href ="<?php echo base_url(); ?>public/vendor/font-awesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="<?php echo base_url(); ?>public/ext/datetimepicker/bootstrap-datepicker.min.css" />
     </head>
     <body>
       <div id="wrapper">
@@ -75,15 +76,100 @@
                       </div>
                       <!-- /.col-lg-12 -->
                   </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <span id="success_flashdata" class = "text-success  "><?php echo $this->session->flashdata('success'); ?></span>
+                    <button class='btn btn-primary btn-sm' data-toggle='modal' data-target='#reportModal'>
+                          <i class="fa fa-newspaper-o"></i> Select Date
+                      </button></div>
+                  </div>
                 </div>
 
+                <div class="modal fade" id='reportModal' data-backdrop='static' role='dialog'>
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="close" data-dismiss='modal'>&times;</div>
+                                <h4 class="text-center">Generate Report</h4>
+                            </div>
 
+                            <div class="modal-body">
+                                <div class="row" id="datePair">
+                                    <div class="col-sm-6 form-group-sm">
+                                        <label class="control-label">From Date</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <span><i class="fa fa-calendar"></i></span>
+                                            </div>
+                                            <input type="text" id='transFrom' class="form-control date start" placeholder="YYYY-MM-DD">
+                                        </div>
+                                        <span class="help-block errMsg" id='transFromErr'></span>
+                                    </div>
+
+                                    <div class="col-sm-6 form-group-sm">
+                                        <label class="control-label">To Date</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <span><i class="fa fa-calendar"></i></span>
+                                            </div>
+                                            <input type="text" id='transTo' class="form-control date end" placeholder="YYYY-MM-DD">
+                                        </div>
+                                        <span class="help-block errMsg" id='transToErr'></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button  class="btn btn-success" id='clickToGen'>Generate</button>
+                                <button class="btn btn-danger" data-dismiss='modal'>Close</button>
+                            </div>
+                        </div>
+                    </div></div>
 
         </div>
           <!-- /#wrapper -->
 
             <script src="<?php echo base_url(); ?>public/vendor/jquery/jquery.min.js"></script>
             <script src="<?php echo base_url(); ?>public/vendor/bootstrap/js/bootstrap.min.js"></script>
+            <script src="<?php echo base_url(); ?>public/ext/datetimepicker/bootstrap-datepicker.min.js"></script>
+            <script src="<?php echo base_url(); ?>public/ext/datetimepicker/jquery.timepicker.min.js"></script>
+            <script src="<?php echo base_url(); ?>public/ext/datetimepicker/datepair.min.js"></script>
+            <script src="<?php echo base_url(); ?>public/ext/datetimepicker/jquery.datepair.min.js"></script>
+            <script>
+            $('#datePair .date').datepicker({
+       format: 'yyyy-mm-dd',
+       autoclose: true,
+       assumeNearbyYear: true,
+       todayBtn: 'linked',
+       todayHighlight: true,
+       endDate: 'today'
+   });
+            $("#clickToGen").click(function(e){
+        e.preventDefault();
+
+        let fromDate = $("#transFrom").val();
+        let toDate = $("#transTo").val();
+
+        if(!fromDate){
+            $("#transFromErr").html("Select date to start from");
+
+        }
+        let base_url = '<?php echo base_url(); ?>';
+        let report_result = "index.php/manager_controller/report_result/"+fromDate+"/"+toDate;
+        window.location.replace(base_url+report_result);
+
+        /*
+         * remove any error msg, hide modal, launch window to display the report in
+         */
+
+        $("#transFromErr").html("");
+        $("#reportModal").modal('hide');
+
+        var strWindowFeatures = "width=1000,height=500,scrollbars=yes,resizable=yes";
+
+        window.open(appRoot+"transactions/report/"+fromDate+"/"+toDate, 'Print', strWindowFeatures);
+    });
+  </script>
   </body>
 
 </html>

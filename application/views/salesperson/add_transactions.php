@@ -145,7 +145,7 @@
 
                     <div class="col-sm-3 form-group-sm">
                         <label for="amount_given" >Amount Given</label>
-                        <input id ="amount_given" name="amount_given" onchange="adjust_price()"   required="required" type="number" min="0" class="form-control">
+                        <input id ="amount_given" name="amount_given" onchange="adjust_price()"    min="0" class="form-control">
                     </div>
 
                     <div class="col-sm-3 form-group-sm">
@@ -159,24 +159,24 @@
                 <div class="row">
                     <div class="col-sm-4 form-group-sm">
                         <label for="customer_name">Customer Name</label>
-                        <input type="text" required="required" name="customer_name" class="form-control" placeholder="Customer Name">
+                        <input type="text"  name="customer_name" class="form-control" placeholder="Customer Name">
                     </div>
 
                     <div class="col-sm-4 form-group-sm">
                         <label for="customer_tin">Customer TIN Number</label>
-                        <input type="number" required="required" name="customer_tin" class="form-control" placeholder="Customer TIN">
+                        <input  name="customer_tin" class="form-control" placeholder="Customer TIN">
                     </div>
 
                     <div class="col-sm-4 form-group-sm">
                         <label for="customer_phone">Customer Phone</label>
-                        <input type="tel" required="required" name="customer_phone" class="form-control" placeholder="Customer Phone">
+                        <input  name="customer_phone" class="form-control" placeholder="Customer Phone">
                     </div>
                 </div>
                 <br><br>
                 <div class="row">
                   <div class="col-sm-7 form-group-sm"></div>
                   <div class="col-sm-5 form-group-sm">
-                    <button type="button" class="btn btn-success btn-sm" name="notify" >Notify Stockmanager</button>
+                    <button id="notify_order_button" type="button" onclick="" class="btn btn-success btn-sm" name="notify" >Notify Stockmanager</button>
                     <button type="submit" class="btn btn-primary btn-sm" name="add_transaction" >Add Transaction</button>
                     <button type="reset" class="btn btn-danger btn-sm" name="clear_form" >Clear Form</button>
                   </div>
@@ -197,9 +197,12 @@
               $("#clear_item_button").hide();
               if($("#success_flashdata").html() ===""){
                 $("#sucess_alert_box").attr("class","alert alert-success alert-dismissable hidden");
+                $("#notify_order_button").attr('class','btn btn-success btn-sm hidden');
               }
               else{
                 $("#sucess_alert_box").attr("class","alert alert-success alert-dismissable");
+                //$("#notify_order_button").attr('class','btn btn-success btn-sm');
+                //$("#notify_order_button").attr('onclick',"window.location.href='<?php echo base_url(); ?>index.php/salesperson_controller/notify_order/'");
               }
             });
 
@@ -229,6 +232,8 @@
                     $("#clear_item_button").show();
                     //add the action link
                     $("#transaction_form").attr('action',add_transaction_redirect());
+                    $("#notify_order_button").attr('onclick',"window.location.href='<?php echo base_url(); ?>index.php/salesperson_controller/notify_order/'");
+
 
 
                   }
@@ -297,6 +302,7 @@
                   let base_url = "<?php echo base_url(); ?>";
                   return base_url+'index.php/salesperson_controller/add_transaction/'+get_number_of_items_added();
                 }
+
 
 
 

@@ -90,7 +90,7 @@
                         <div class="row">
                             <div class="col-sm-12 form-group-sm">
                                 <label for="itemQuantity">Quantity</label>
-                                <input type="number" value="<?php echo set_value('item_quantity'); ?>" id="itemQuantity" name="item_quantity" placeholder="Available Quantity"
+                                <input  value="<?php echo set_value('item_quantity'); ?>" id="itemQuantity" name="item_quantity" placeholder="Available Quantity"
                                     class="form-control" min="0" >
                             </div>
                         </div>

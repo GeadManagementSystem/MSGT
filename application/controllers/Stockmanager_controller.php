@@ -27,8 +27,8 @@ class Stockmanager_controller extends CI_Controller{
       $this->load->model('stock_model');
       //set rules for the forms
       $this->form_validation->set_rules('item_name','Item Name','required');
-      $this->form_validation->set_rules('item_quantity','Item Quantity','required|numeric');
-      $this->form_validation->set_rules('item_price','Unit Price','required|numeric');
+      $this->form_validation->set_rules('item_quantity','Item Quantity','required');
+      $this->form_validation->set_rules('item_price','Unit Price','required');
 
       if ($this->form_validation->run() == TRUE ){
 
