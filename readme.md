@@ -1,23 +1,10 @@
-#################################################
-Management System for Gead General Trading (MSGT)
-#################################################
+
+# Management System for Gead General Trading (MSGT)
+
 This is a Software Engineering I Course Project at Addis Ababa University, Institute of Technology
-*******************
-Team Members
-*******************
-- Adiam Geberselassie
-- Afrah Awol
-- Biruk Wondirad
-- Eyuel Berga
-- Jemila Ibrahim
-- Yanet Endale
-*******************
-Advisor
-*******************
-- Mr. Fistum Alemu
-*****************************************************************************************************************************************************
-About the Project
-************************
+
+## About the Project
+
 The main objective of the project is to develop a user-friendly computerized system which will enable
 the company[Gead General Trading] to run its business with minimal workload.
 
