@@ -1,25 +1,12 @@
 
-# Management System for Gead General Trading (MSGT)
+# Management System for G General Trading (MSGT)
 
 This is a Software Engineering I Course Project at Addis Ababa University, Institute of Technology
 
-## About the Project
+## Documentations
+All documentations for the project acn be found [Here](https://github.com/GeadManagementSystem/MSGT/tree/master/public/Documentations)
 
-The main objective of the project is to develop a user-friendly computerized system which will enable
-the company[Gead General Trading] to run its business with minimal workload.
-
-In the existing system, when new goods come to the store, they are manually counted and recorded on paper.
-Then they will be transferred to a storage facility. The stock manager and sales-person will issue copies of the
-recorded list. When a customer buys items from the store, the sales-person will look at the list and see if the
-item requested exists in storage. This might take a long time if the list is long. If the item is found, the salesperson will deduct the amount requested and will inform the stock-manager to take the items out of storage.
-Then, the stock-manager will take the items out, and will deduct the amount from his/her copy of the stock-list. The sales-person will also issue the customer a receipt. Two copies of the same receipt are made, one will
-be given to the customer as a conformation of transaction and the other will be documented.
-
-At the end of each working day, the manager will compare the two copies of the stock-list given to the stockmanager and the sales-person. The manager will be responsible for making sure that the amount of goods listed
-in both lists is identical. He/she will also check for any irregularities in the transactions made throughout the
-day by going through every documented receipts. At the end of every week, the manager is required to present
-a report on the state of the business. He/she will refer to the paper-documented results collected so far and
-manually calculate profits or losses.
+## Statement of the problem
 
 One of the issues of the existing system is the use of paper-based documentation for transactions and stock
 information. Paper-based systems will limit the collaboration between the staff. Understanding the changes
@@ -42,12 +29,19 @@ plans to make future decisions. But the current system does not enable the compa
 decisions are good or not, in an acceptable amount of time. So, they will resort to pure instincts in making this
 important decision, rather than logically assessing them.
 
+## Objective of Project
+
+The main objective of the project is to develop a user-friendly computerized system which will enable
+the company(G General Trading) to run its business with minimal workload.
+
+## Proposed System
+
 In the new system, when new goods come to the store the stock manager will add them to the system through
 the GUI (graphical user interface) and they will be transferred to a storage facility. When a customer buys an
 item from the store, the salesperson will use the system to add a transaction and notify the stock manager to
 deliver the items from storage. Then the salesperson will confirm the transaction and will also print the receipt
 for the customer.
+
 The manager will use the new system to oversee all activities happening at the store. He/she will log in to the
 system and will be able to view and update staff information and also get comprehensive sales data report. At
 the end of each week the manager will be able to view or print the system generated report.
-
