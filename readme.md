@@ -4,7 +4,7 @@
 This is a Software Engineering I Course Project at Addis Ababa University, Institute of Technology
 
 ## Documentations
-All documentations for the project acn be found [Here](https://github.com/GeadManagementSystem/MSGT/tree/master/public/Documentations)
+All documentations for the project can be found [Here](https://github.com/GeadManagementSystem/MSGT/tree/master/public/Documentations)
 
 ## Statement of the problem
 
